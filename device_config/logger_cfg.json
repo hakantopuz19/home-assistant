@@ -1,0 +1,24 @@
+{
+  "serial": {
+    "enabled": true,
+    "baudrate": 115200,
+    "log_level": "info"
+  },
+  "storage": {
+    "enabled": true,
+    "file": "logs/system.log",
+    "max_lines": 200,
+    "max_bytes": 8192,
+    "append": true
+  },
+  "circular": {
+    "enabled": true,
+    "file": "logs/circular.log",
+    "max_lines": 100,
+    "rollover": true
+  },
+  "defaults": {
+    "encoding": "utf-8",
+    "timestamp": true
+  }
+}

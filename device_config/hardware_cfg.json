@@ -1,0 +1,58 @@
+{
+  "adc": {
+    "enabled": true,
+    "pin": 34,
+    "attenuation": 3,
+    "sample_rate": 1000
+  },
+  "dac": {
+    "enabled": false,
+    "pin": 25,
+    "value": 0
+  },
+  "gpio": {
+    "enabled": true,
+    "pins": [
+      {
+        "id": 18,
+        "mode": "out",
+        "pull": null,
+        "value": 0
+      },
+      {
+        "id": 19,
+        "mode": "in",
+        "pull": "up",
+        "value": null
+      }
+    ]
+  },
+  "pwm": {
+    "enabled": false,
+    "pin": 18,
+    "freq": 1000,
+    "duty": 0
+  },
+  "i2c": {
+    "enabled": false,
+    "scl_pin": 22,
+    "sda_pin": 21,
+    "freq": 100000
+  },
+  "i2s": {
+    "enabled": false,
+    "sck_pin": 26,
+    "ws_pin": 25,
+    "sd_pin": 33,
+    "mode": 1,
+    "bits": 16,
+    "rate": 16000
+  },
+  "ui": {
+    "title": "Hardware Configuration",
+    "description": "Manage peripherals from the device web UI"
+  },
+  "defaults": {
+    "encoding": "utf-8"
+  }
+}

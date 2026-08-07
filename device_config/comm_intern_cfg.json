@@ -1,0 +1,28 @@
+{
+  "dispatcher": {
+    "enabled": true,
+    "default_event": "default"
+  },
+  "event_driven": {
+    "enabled": true,
+    "events": {
+      "boot": "boot",
+      "status": "status",
+      "error": "error"
+    }
+  },
+  "message_bus": {
+    "enabled": true,
+    "topics": {
+      "status": "status",
+      "command": "command",
+      "telemetry": "telemetry"
+    },
+    "retain_history": true,
+    "history_limit": 100
+  },
+  "defaults": {
+    "buffer_size": 1024,
+    "encoding": "utf-8"
+  }
+}

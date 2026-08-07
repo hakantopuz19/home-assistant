@@ -1,0 +1,56 @@
+{
+  "mqtt": {
+    "client": {
+      "enabled": true,
+      "host": "localhost",
+      "port": 1883,
+      "timeout": 3,
+      "background": false,
+      "topics": {
+        "default": "device/default"
+      }
+    },
+    "server": {
+      "enabled": false,
+      "host": "0.0.0.0",
+      "port": 1883,
+      "backlog": 2,
+      "timeout": 3,
+      "background": false
+    }
+  },
+  "tcp": {
+    "client": {
+      "enabled": true,
+      "host": "localhost",
+      "port": 9000,
+      "timeout": 3,
+      "background": false
+    },
+    "server": {
+      "enabled": false,
+      "host": "0.0.0.0",
+      "port": 9000,
+      "backlog": 2,
+      "background": false
+    }
+  },
+  "udp": {
+    "client": {
+      "enabled": true,
+      "host": "127.0.0.1",
+      "port": 9001,
+      "background": false
+    },
+    "server": {
+      "enabled": false,
+      "host": "0.0.0.0",
+      "port": 9001,
+      "background": false
+    }
+  },
+  "defaults": {
+    "buffer_size": 1024,
+    "encoding": "utf-8"
+  }
+}
