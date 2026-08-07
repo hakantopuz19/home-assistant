@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Device Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Device Control</h1>
+    <p class="subtitle">Sign in to manage the device</p>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" value="admin" required>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" value="admin" required>
+      <button type="submit">Login</button>
+    </form>
+    <p id="message" class="message"></p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
