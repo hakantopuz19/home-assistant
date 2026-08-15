@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Device Logs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <span class="brand-mark">D</span>
+          <span>Device</span>
+        </div>
+        <button id="sidebarToggle" class="icon-button" type="button" aria-label="Toggle menu">☰</button>
+      </div>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav-link" href="../hardware_cfg_page/">Hardware</a>
+        <a class="nav-link" href="../network_cfg_page/">Network</a>
+        <a class="nav-link active" href="../logs_page/">Logs</a>
+      </nav>
+    </aside>
+
+    <main class="page-shell">
+      <header class="topbar">
+        <button id="sidebarToggleTop" class="icon-button mobile-only" type="button" aria-label="Open menu">☰</button>
+        <h1>System Logs</h1>
+        <button id="logoutBtn" class="primary-button" type="button">Logout</button>
+      </header>
+
+      <section class="card">
+        <div class="section-heading">
+          <h2>Runtime Event Feed</h2>
+          <p>Review recent system events, requests, and status updates from the device.</p>
+        </div>
+
+        <div class="toolbar">
+          <div class="toolbar-group">
+            <button type="button" id="refreshLogs" class="primary-button">Refresh</button>
+            <button type="button" id="toggleAutoRefresh" class="secondary-button" aria-live="polite">Auto refresh: On</button>
+          </div>
+          <div id="logMeta" class="log-meta">No activity yet</div>
+        </div>
+
+        <pre id="logOutput" class="log-output" aria-live="polite">No logs available yet.</pre>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

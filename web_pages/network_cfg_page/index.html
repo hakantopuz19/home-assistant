@@ -7,19 +7,114 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="page">
-    <header>
-      <h1>Network Configuration</h1>
-      <button id="logoutBtn">Logout</button>
-    </header>
-    <section class="card">
-      <h2>Wi-Fi and Mesh Settings</h2>
-      <p>Manage access point, station,mesh and network-related configuration.</p>
-      <div class="actions">
-        <a href="../hardware_cfg_page/">Hardware Configuration</a>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <span class="brand-mark">D</span>
+          <span class="brand-text">Device</span>
+        </div>
+        <button id="sidebarToggle" class="icon-button" type="button" aria-label="Toggle menu">☰</button>
       </div>
-    </section>
-  </main>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav-link" href="../hardware_cfg_page/">Hardware</a>
+        <a class="nav-link active" href="../network_cfg_page/">Network</a>
+        <a class="nav-link" href="../logs_page/">Logs</a>
+      </nav>
+    </aside>
+
+    <main class="page-shell">
+      <header class="topbar">
+        <button id="sidebarToggleTop" class="icon-button mobile-only" type="button" aria-label="Open menu">☰</button>
+        <h1>Network Configuration</h1>
+        <button id="logoutBtn" class="primary-button" type="button">Logout</button>
+      </header>
+
+      <section class="card">
+        <div class="section-heading">
+          <h2>Wi-Fi and Mesh Settings</h2>
+          <p>Manage access point, station, mesh and network-related configuration.</p>
+        </div>
+
+        <form id="networkConfigForm">
+          <div class="field-group">
+            <h3>Access Point</h3>
+            <label class="check-row"><input type="checkbox" name="access_point.enabled"> Enabled</label>
+            <label class="field-label" for="access_point.ssid">SSID</label>
+            <input id="access_point.ssid" name="access_point.ssid" placeholder="ESP32-AP" />
+            <label class="field-label" for="access_point.password">Password</label>
+            <input id="access_point.password" name="access_point.password" type="password" placeholder="12345678" />
+            <label class="field-label" for="access_point.channel">Channel</label>
+            <input id="access_point.channel" name="access_point.channel" type="number" placeholder="1" />
+            <label class="field-label" for="access_point.authmode">Auth Mode</label>
+            <input id="access_point.authmode" name="access_point.authmode" type="number" placeholder="3" />
+            <label class="check-row"><input type="checkbox" name="access_point.hidden"> Hidden</label>
+            <label class="field-label" for="access_point.max_clients">Max Clients</label>
+            <input id="access_point.max_clients" name="access_point.max_clients" type="number" placeholder="4" />
+            <label class="field-label" for="access_point.ip">IP</label>
+            <input id="access_point.ip" name="access_point.ip" placeholder="192.168.4.1" />
+            <label class="field-label" for="access_point.netmask">Netmask</label>
+            <input id="access_point.netmask" name="access_point.netmask" placeholder="255.255.255.0" />
+            <label class="field-label" for="access_point.gateway">Gateway</label>
+            <input id="access_point.gateway" name="access_point.gateway" placeholder="192.168.4.1" />
+            <label class="field-label" for="access_point.dns">DNS</label>
+            <input id="access_point.dns" name="access_point.dns" placeholder="8.8.8.8" />
+          </div>
+
+          <div class="field-group">
+            <h3>Station</h3>
+            <label class="check-row"><input type="checkbox" name="station.enabled"> Enabled</label>
+            <label class="field-label" for="station.ssid">SSID</label>
+            <input id="station.ssid" name="station.ssid" placeholder="Your Wi-Fi SSID" />
+            <label class="field-label" for="station.password">Password</label>
+            <input id="station.password" name="station.password" type="password" placeholder="Wi-Fi password" />
+            <label class="field-label" for="station.timeout">Timeout</label>
+            <input id="station.timeout" name="station.timeout" type="number" placeholder="15" />
+            <label class="check-row"><input type="checkbox" name="station.reconnect"> Reconnect</label>
+            <label class="field-label" for="station.reconnect_interval">Reconnect Interval</label>
+            <input id="station.reconnect_interval" name="station.reconnect_interval" type="number" placeholder="5" />
+          </div>
+
+          <div class="field-group">
+            <h3>Mesh</h3>
+            <label class="check-row"><input type="checkbox" name="mesh.enabled"> Enabled</label>
+            <label class="field-label" for="mesh.node_id">Node ID</label>
+            <input id="mesh.node_id" name="mesh.node_id" placeholder="esp32-node-1" />
+            <label class="field-label" for="mesh.listen_port">Listen Port</label>
+            <input id="mesh.listen_port" name="mesh.listen_port" type="number" placeholder="10000" />
+            <label class="field-label" for="mesh.discovery_interval">Discovery Interval</label>
+            <input id="mesh.discovery_interval" name="mesh.discovery_interval" type="number" placeholder="5" />
+            <label class="check-row"><input type="checkbox" name="mesh.broadcast"> Broadcast</label>
+          </div>
+
+          <div class="field-group">
+            <h3>HTTP Server</h3>
+            <label class="check-row"><input type="checkbox" name="http_server.enabled"> Enabled</label>
+            <label class="field-label" for="http_server.port">Port</label>
+            <input id="http_server.port" name="http_server.port" type="number" placeholder="80" />
+          </div>
+
+          <div class="field-group">
+            <h3>UI Login</h3>
+            <label class="field-label" for="ui.login_user">Username</label>
+            <input id="ui.login_user" name="ui.login_user" placeholder="admin" />
+            <label class="field-label" for="ui.login_password">Password</label>
+            <input id="ui.login_password" name="ui.login_password" type="password" placeholder="admin" />
+          </div>
+
+          <div class="actions">
+            <button type="button" id="reloadNetworkConfig" class="secondary-button">Reload</button>
+            <button type="submit" class="primary-button">Save Configuration</button>
+            <button type="button" id="resetDeviceBtn" class="danger-button">Reset Device</button>
+          </div>
+        </form>
+
+        <p id="status" class="status" aria-live="polite"></p>
+      </section>
+    </main>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

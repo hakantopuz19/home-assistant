@@ -7,18 +7,27 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="card">
-    <h1>Device Control</h1>
-    <p class="subtitle">Sign in to manage the device</p>
-    <form id="loginForm">
-      <label for="username">Username</label>
-      <input id="username" name="username" type="text" value="admin" required>
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" value="admin" required>
-      <button type="submit">Login</button>
-    </form>
-    <p id="message" class="message"></p>
+  <main class="login-shell">
+    <section class="login-card" aria-label="Login panel">
+      <div class="brand-mark" aria-hidden="true">D</div>
+      <p class="eyebrow">Device Console</p>
+      <h1>Welcome back</h1>
+      <p class="subtitle">Sign in to manage your ESP32 device configuration</p>
+
+      <form id="loginForm" novalidate>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" value="admin" autocomplete="username" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" value="admin" autocomplete="current-password" required>
+
+        <button type="submit">Login</button>
+      </form>
+
+      <p id="message" class="message" aria-live="polite"></p>
+    </section>
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>

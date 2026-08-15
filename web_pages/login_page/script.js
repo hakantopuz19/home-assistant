@@ -1,12 +1,15 @@
+// Login page logic: validate credentials, store token and redirect to the dashboard.
 const form = document.getElementById('loginForm');
 const message = document.getElementById('message');
 
 form.addEventListener('submit', async function (event) {
   event.preventDefault();
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
+
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value.trim();
 
   message.textContent = 'Signing in...';
+  message.style.color = '#fbbf24';
 
   try {
     const response = await fetch('/api/login', {
@@ -21,10 +24,13 @@ form.addEventListener('submit', async function (event) {
     if (data.ok) {
       localStorage.setItem('device_token', data.token);
       window.location.href = '/hardware_cfg_page/?token=' + encodeURIComponent(data.token);
-    } else {
-      message.textContent = data.error || 'Invalid credentials';
+      return;
     }
+
+    message.textContent = data.error || 'Invalid credentials';
+    message.style.color = '#fca5a5';
   } catch (error) {
-    message.textContent = 'Login failed';
+    message.textContent = 'Login failed. Please try again.';
+    message.style.color = '#fca5a5';
   }
 });

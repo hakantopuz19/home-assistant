@@ -7,19 +7,146 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="page">
-    <header>
-      <h1>Hardware Configuration</h1>
-      <button id="logoutBtn">Logout</button>
-    </header>
-    <section class="card">
-      <h2>Peripheral Settings</h2>
-      <p>Configure ADC, DAC, GPIO, PWM, I2C and I2S from this page.</p>
-      <div class="actions">
-        <a href="../network_cfg_page/">Network Configuration</a>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <span class="brand-mark">D</span>
+          <span class="brand-text">Device</span>
+        </div>
+        <button id="sidebarToggle" class="icon-button" type="button" aria-label="Toggle menu">☰</button>
       </div>
-    </section>
-  </main>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav-link active" href="../hardware_cfg_page/">Hardware</a>
+        <a class="nav-link" href="../network_cfg_page/">Network</a>
+        <a class="nav-link" href="../logs_page/">Logs</a>
+      </nav>
+    </aside>
+
+    <main class="page-shell">
+      <header class="topbar">
+        <button id="sidebarToggleTop" class="icon-button mobile-only" type="button" aria-label="Open menu">☰</button>
+        <h1>Hardware Configuration</h1>
+        <button id="logoutBtn" class="secondary-button" type="button">Logout</button>
+      </header>
+
+      <section class="card">
+        <div class="section-heading">
+          <h2>Peripheral Settings</h2>
+          <p>Configure ADC, DAC, GPIO, PWM, I2C, and I2S from this page.</p>
+        </div>
+
+        <form id="hardwareConfigForm">
+          <div class="field-group">
+            <h3>ADC</h3>
+            <label class="check-row"><input type="checkbox" name="adc.enabled"> Enabled</label>
+            <label class="field-label" for="adc.pin">Pin</label>
+            <input id="adc.pin" name="adc.pin" type="number" placeholder="34" />
+            <label class="field-label" for="adc.attenuation">Attenuation</label>
+            <input id="adc.attenuation" name="adc.attenuation" type="number" placeholder="3" />
+            <label class="field-label" for="adc.sample_rate">Sample Rate</label>
+            <input id="adc.sample_rate" name="adc.sample_rate" type="number" placeholder="1000" />
+          </div>
+
+          <div class="field-group">
+            <h3>DAC</h3>
+            <label class="check-row"><input type="checkbox" name="dac.enabled"> Enabled</label>
+            <label class="field-label" for="dac.pin">Pin</label>
+            <input id="dac.pin" name="dac.pin" type="number" placeholder="25" />
+            <label class="field-label" for="dac.value">Value</label>
+            <input id="dac.value" name="dac.value" type="number" placeholder="0" />
+          </div>
+
+          <div class="field-group gpio-group">
+            <div class="group-header">
+              <h3>GPIO</h3>
+              <label class="check-row inline"><input type="checkbox" name="gpio.enabled"> Enabled</label>
+            </div>
+
+            <details class="gpio-details" open>
+              <summary>Pin list</summary>
+              <div class="table-wrap">
+                <table class="gpio-table">
+                  <thead>
+                    <tr>
+                      <th>Pin</th>
+                      <th>Mode</th>
+                      <th>Pull</th>
+                      <th>Value</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="gpioTableBody"></tbody>
+                </table>
+              </div>
+              <div class="table-actions">
+                <button type="button" id="addGpioRow" class="secondary-button">Add pin</button>
+              </div>
+            </details>
+          </div>
+
+          <div class="field-group">
+            <h3>PWM</h3>
+            <label class="check-row"><input type="checkbox" name="pwm.enabled"> Enabled</label>
+            <label class="field-label" for="pwm.pin">Pin</label>
+            <input id="pwm.pin" name="pwm.pin" type="number" placeholder="18" />
+            <label class="field-label" for="pwm.freq">Frequency</label>
+            <input id="pwm.freq" name="pwm.freq" type="number" placeholder="1000" />
+            <label class="field-label" for="pwm.duty">Duty</label>
+            <input id="pwm.duty" name="pwm.duty" type="number" placeholder="0" />
+          </div>
+
+          <div class="field-group">
+            <h3>I2C</h3>
+            <label class="check-row"><input type="checkbox" name="i2c.enabled"> Enabled</label>
+            <label class="field-label" for="i2c.scl_pin">SCL Pin</label>
+            <input id="i2c.scl_pin" name="i2c.scl_pin" type="number" placeholder="22" />
+            <label class="field-label" for="i2c.sda_pin">SDA Pin</label>
+            <input id="i2c.sda_pin" name="i2c.sda_pin" type="number" placeholder="21" />
+            <label class="field-label" for="i2c.freq">Frequency</label>
+            <input id="i2c.freq" name="i2c.freq" type="number" placeholder="100000" />
+          </div>
+
+          <div class="field-group">
+            <h3>I2S</h3>
+            <label class="check-row"><input type="checkbox" name="i2s.enabled"> Enabled</label>
+            <label class="field-label" for="i2s.sck_pin">SCK Pin</label>
+            <input id="i2s.sck_pin" name="i2s.sck_pin" type="number" placeholder="26" />
+            <label class="field-label" for="i2s.ws_pin">WS Pin</label>
+            <input id="i2s.ws_pin" name="i2s.ws_pin" type="number" placeholder="25" />
+            <label class="field-label" for="i2s.sd_pin">SD Pin</label>
+            <input id="i2s.sd_pin" name="i2s.sd_pin" type="number" placeholder="33" />
+            <label class="field-label" for="i2s.mode">Mode</label>
+            <input id="i2s.mode" name="i2s.mode" type="number" placeholder="1" />
+            <label class="field-label" for="i2s.bits">Bits</label>
+            <input id="i2s.bits" name="i2s.bits" type="number" placeholder="16" />
+            <label class="field-label" for="i2s.rate">Rate</label>
+            <input id="i2s.rate" name="i2s.rate" type="number" placeholder="16000" />
+          </div>
+
+          <div class="actions">
+            <button type="button" id="reloadHardwareConfig" class="secondary-button">Reload</button>
+            <button type="submit" class="primary-button">Save Configuration</button>
+            <button type="button" id="resetDeviceBtn" class="danger-button">Reset Device</button>
+          </div>
+        </form>
+
+        <div class="field-group" id="liveReadoutPanel" style="margin-top: 1.5rem;">
+          <div class="group-header">
+            <h3>Live Hardware Readout</h3>
+            <button type="button" id="readHardwareBtn" class="secondary-button">Read now</button>
+          </div>
+          <div id="liveReadout" class="status-box" aria-live="polite">
+            No reading yet. Click “Read now” to read the configured hardware.
+          </div>
+        </div>
+
+        <p id="status" class="status" aria-live="polite"></p>
+      </section>
+    </main>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

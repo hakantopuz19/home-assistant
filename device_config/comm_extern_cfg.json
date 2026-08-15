@@ -1,7 +1,7 @@
 {
   "mqtt": {
     "client": {
-      "enabled": true,
+      "enabled": false,
       "host": "localhost",
       "port": 1883,
       "timeout": 3,
@@ -37,7 +37,7 @@
   },
   "udp": {
     "client": {
-      "enabled": true,
+      "enabled": false,
       "host": "127.0.0.1",
       "port": 9001,
       "background": false
